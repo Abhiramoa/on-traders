@@ -1,0 +1,25 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'shop/style.css' %}">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vegetable Products</title>
+</head>
+<body>
+    <h1>Available Vegetables</h1>
+
+    {% for product in products %}
+        <div class="product">
+            <h2>{{ product.name }} - ₹{{ product.price }}</h2>
+            <p>{{ product.description }}</p>
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200" />
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>No vegetables available at the moment.</p>
+    {% endfor %}
+
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>
